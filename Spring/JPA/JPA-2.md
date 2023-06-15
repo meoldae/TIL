@@ -31,3 +31,17 @@ JPA 설정파일 옵션을 통해 설정 가능
         - ```unique``` : ```true || false```
         - ```nullable``` : ```true || false```
         - ```length``` : 정수값 입력..
+
+### 기본 키 맵핑
+- ```@Id``` : 직접 할당 (문자열)
+- ```@GeneratedValue``` : 자동 생성 ( GenerationType.옵션 )
+    - IDENTITY : DB에 위임 ex.) Auto Increment 
+    - SEQUENCE : 주로 Oracle DB에서 사용하며 시퀀스 오브젝트를 가져와서 사용
+        - ```SequenceGenerator, sequenceName```을 통해 테이블마다 다른 시퀀스를 매핑할 수 있음
+    - TABLE : 키 전용 테이블을 만들어 시퀀스 흉내 (성능↓)
+    - AUTO : DB에 맞춰서 자동 생성
+
+### 기본키 전략
+- 제약조건 : NULL X, Unique, ```불변```
+- 미래까지 불변하는 자연적인 키는 찾기 어려움
+- Long + 대체키 + 키 생성 전략 사용 권장
